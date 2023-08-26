@@ -24,8 +24,10 @@ CREATE TABLE votes (
     phone_number      bigint     NOT NULL,
     state             varchar(2) NOT NULL,
     contestant_number integer    NOT NULL,
-    created           timestamp  NOT NULL,
-    FOREIGN KEY (contestant_number) REFERENCES contestants (contestant_number) ON DELETE CASCADE
+    created           timestamp  NOT NULL
+    -- yyx comment for mysql 5.6
+    -- ,
+    -- FOREIGN KEY (contestant_number) REFERENCES contestants (contestant_number) ON DELETE CASCADE
 );
 CREATE INDEX idx_votes_phone_number ON votes (phone_number);
 

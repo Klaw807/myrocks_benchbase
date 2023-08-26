@@ -80,8 +80,10 @@ CREATE TABLE airport (
     ap_iattr13     bigint,
     ap_iattr14     bigint,
     ap_iattr15     bigint,
-    PRIMARY KEY (ap_id),
-    FOREIGN KEY (ap_co_id) REFERENCES country (co_id)
+    PRIMARY KEY (ap_id)
+    -- yyx comment for 5.6
+    -- ,
+    -- FOREIGN KEY (ap_co_id) REFERENCES country (co_id)
 );
 
 --
@@ -91,9 +93,11 @@ CREATE TABLE airport_distance (
     d_ap_id0   bigint NOT NULL,
     d_ap_id1   bigint NOT NULL,
     d_distance float  NOT NULL,
-    PRIMARY KEY (d_ap_id0, d_ap_id1),
-    FOREIGN KEY (d_ap_id0) REFERENCES airport (ap_id),
-    FOREIGN KEY (d_ap_id1) REFERENCES airport (ap_id)
+    PRIMARY KEY (d_ap_id0, d_ap_id1)
+    -- yyx comment for 5.6
+    -- ,
+    -- FOREIGN KEY (d_ap_id0) REFERENCES airport (ap_id),
+    -- FOREIGN KEY (d_ap_id1) REFERENCES airport (ap_id)
 );
 
 --
@@ -122,8 +126,10 @@ CREATE TABLE airline (
     al_iattr13   bigint,
     al_iattr14   bigint,
     al_iattr15   bigint,
-    PRIMARY KEY (al_id),
-    FOREIGN KEY (al_co_id) REFERENCES country (co_id)
+    PRIMARY KEY (al_id)
+    -- yyx comment for 5.6
+    -- ,
+    -- FOREIGN KEY (al_co_id) REFERENCES country (co_id)
 );
 
 --
@@ -174,8 +180,10 @@ CREATE TABLE customer (
     c_iattr17    bigint,
     c_iattr18    bigint,
     c_iattr19    bigint,
-    PRIMARY KEY (c_id),
-    FOREIGN KEY (c_base_ap_id) REFERENCES airport (ap_id)
+    PRIMARY KEY (c_id)
+    -- yyx comment for 5.6
+    -- ,
+    -- FOREIGN KEY (c_base_ap_id) REFERENCES airport (ap_id)
 );
 
 --
@@ -205,9 +213,11 @@ CREATE TABLE frequent_flyer (
     ff_iattr13  bigint,
     ff_iattr14  bigint,
     ff_iattr15  bigint,
-    PRIMARY KEY (ff_c_id, ff_al_id),
-    FOREIGN KEY (ff_c_id) REFERENCES customer (c_id),
-    FOREIGN KEY (ff_al_id) REFERENCES airline (al_id)
+    PRIMARY KEY (ff_c_id, ff_al_id)
+    -- yyx comment for 5.6
+    -- ,
+    -- FOREIGN KEY (ff_c_id) REFERENCES customer (c_id),
+    -- FOREIGN KEY (ff_al_id) REFERENCES airline (al_id)
 );
 CREATE INDEX idx_ff_customer_id ON frequent_flyer (ff_c_id_str);
 
@@ -255,10 +265,12 @@ CREATE TABLE flight (
     f_iattr27      bigint,
     f_iattr28      bigint,
     f_iattr29      bigint,
-    PRIMARY KEY (f_id),
-    FOREIGN KEY (f_al_id) REFERENCES airline (al_id),
-    FOREIGN KEY (f_depart_ap_id) REFERENCES airport (ap_id),
-    FOREIGN KEY (f_arrive_ap_id) REFERENCES airport (ap_id)
+    PRIMARY KEY (f_id)
+    -- yyx comment for 5.6
+    -- ,
+    -- FOREIGN KEY (f_al_id) REFERENCES airline (al_id),
+    -- FOREIGN KEY (f_depart_ap_id) REFERENCES airport (ap_id),
+    -- FOREIGN KEY (f_arrive_ap_id) REFERENCES airport (ap_id)
 );
 CREATE INDEX f_depart_time_idx ON flight (f_depart_time);
 
@@ -281,9 +293,11 @@ CREATE TABLE reservation (
     r_iattr07 bigint,
     r_iattr08 bigint,
     UNIQUE (r_f_id, r_seat),
-    PRIMARY KEY (r_id, r_c_id, r_f_id),
-    FOREIGN KEY (r_c_id) REFERENCES customer (c_id),
-    FOREIGN KEY (r_f_id) REFERENCES flight (f_id)
+    PRIMARY KEY (r_id, r_c_id, r_f_id)
+    -- yyx comment for 5.6
+    -- ,
+    -- FOREIGN KEY (r_c_id) REFERENCES customer (c_id),
+    -- FOREIGN KEY (r_f_id) REFERENCES flight (f_id)
 );
 
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

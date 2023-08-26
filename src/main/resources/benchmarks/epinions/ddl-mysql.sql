@@ -30,9 +30,11 @@ CREATE TABLE review (
     rating int DEFAULT NULL,
     `rank` int DEFAULT NULL,
     comment varchar(256) DEFAULT NULL,
-    creation_date datetime DEFAULT NULL,
-    FOREIGN KEY (u_id) REFERENCES useracct (u_id) ON DELETE CASCADE,
-    FOREIGN KEY (i_id) REFERENCES item (i_id) ON DELETE CASCADE
+    creation_date datetime DEFAULT NULL
+    -- yyx comment for 5.6
+    -- ,
+    -- FOREIGN KEY (u_id) REFERENCES useracct (u_id) ON DELETE CASCADE,
+    -- FOREIGN KEY (i_id) REFERENCES item (i_id) ON DELETE CASCADE
 );
 CREATE INDEX idx_rating_uid ON review (u_id);
 CREATE INDEX idx_rating_aid ON review (a_id);
@@ -46,8 +48,10 @@ CREATE TABLE review_rating (
     creation_date datetime DEFAULT NULL,
     last_mod_date datetime DEFAULT NULL,
     type          int      DEFAULT NULL,
-    vertical_id   int      DEFAULT NULL,
-    FOREIGN KEY (u_id) REFERENCES useracct (u_id) ON DELETE CASCADE
+    vertical_id   int      DEFAULT NULL
+    -- yyx comment for 5.6
+    -- ,
+    -- FOREIGN KEY (u_id) REFERENCES useracct (u_id) ON DELETE CASCADE
 );
 CREATE INDEX idx_review_rating_uid ON review_rating (u_id);
 CREATE INDEX idx_review_rating_aid ON review_rating (a_id);
@@ -56,9 +60,11 @@ CREATE TABLE trust (
     source_u_id   int NOT NULL,
     target_u_id   int NOT NULL,
     trust         int NOT NULL,
-    creation_date datetime DEFAULT NULL,
-    FOREIGN KEY (source_u_id) REFERENCES useracct (u_id) ON DELETE CASCADE,
-    FOREIGN KEY (target_u_id) REFERENCES useracct (u_id) ON DELETE CASCADE
+    creation_date datetime DEFAULT NULL
+    -- yyx comment for 5.6
+    -- ,
+    -- FOREIGN KEY (source_u_id) REFERENCES useracct (u_id) ON DELETE CASCADE,
+    -- FOREIGN KEY (target_u_id) REFERENCES useracct (u_id) ON DELETE CASCADE
 );
 CREATE INDEX idx_trust_sid ON trust (source_u_id);
 CREATE INDEX idx_trust_tid ON trust (target_u_id);

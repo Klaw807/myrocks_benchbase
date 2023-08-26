@@ -15,15 +15,19 @@ CREATE INDEX idx_accounts_name ON accounts (name);
 CREATE TABLE savings (
     custid bigint NOT NULL,
     bal    float  NOT NULL,
-    CONSTRAINT pk_savings PRIMARY KEY (custid),
-    FOREIGN KEY (custid) REFERENCES accounts (custid)
+    CONSTRAINT pk_savings PRIMARY KEY (custid)
+    -- yyx comment for mysql 5.6
+    -- ,
+    -- FOREIGN KEY (custid) REFERENCES accounts (custid)
 );
 
 CREATE TABLE checking (
     custid bigint NOT NULL,
     bal    float  NOT NULL,
-    CONSTRAINT pk_checking PRIMARY KEY (custid),
-    FOREIGN KEY (custid) REFERENCES accounts (custid)
+    CONSTRAINT pk_checking PRIMARY KEY (custid)
+    -- yyx comment for mysql 5.6
+    -- ,
+    -- FOREIGN KEY (custid) REFERENCES accounts (custid)
 );
 
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

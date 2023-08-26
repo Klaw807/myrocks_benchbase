@@ -50,8 +50,10 @@ CREATE TABLE access_info (
     data2   smallint,
     data3   varchar(3),
     data4   varchar(5),
-    PRIMARY KEY (s_id, ai_type),
-    FOREIGN KEY (s_id) REFERENCES subscriber (s_id)
+    PRIMARY KEY (s_id, ai_type)
+    -- yyx comment for 5.6
+    -- ,
+    -- FOREIGN KEY (s_id) REFERENCES subscriber (s_id)
 );
 
 CREATE TABLE special_facility (
@@ -61,8 +63,10 @@ CREATE TABLE special_facility (
     error_cntrl smallint,
     data_a      smallint,
     data_b      varchar(5),
-    PRIMARY KEY (s_id, sf_type),
-    FOREIGN KEY (s_id) REFERENCES subscriber (s_id)
+    PRIMARY KEY (s_id, sf_type)
+    -- yyx comment for 5.6
+    -- ,
+    -- FOREIGN KEY (s_id) REFERENCES subscriber (s_id)
 );
 
 CREATE TABLE call_forwarding (
@@ -71,8 +75,10 @@ CREATE TABLE call_forwarding (
     start_time tinyint NOT NULL,
     end_time   tinyint,
     numberx    varchar(15),
-    PRIMARY KEY (s_id, sf_type, start_time),
-    FOREIGN KEY (s_id, sf_type) REFERENCES special_facility (s_id, sf_type)
+    PRIMARY KEY (s_id, sf_type, start_time)
+    -- yyx comment for 5.6
+    -- ,
+    -- FOREIGN KEY (s_id, sf_type) REFERENCES special_facility (s_id, sf_type)
 );
 
 CREATE INDEX idx_cf ON call_forwarding (s_id);
